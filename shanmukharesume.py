@@ -7,4 +7,4 @@ with open("shanmukharesume.html", "r", encoding="utf-8") as f:
 
 # Render the HTML/JS website
 st.title("")
-html(html_content, height=None)
+html(html_content, height=1500)
