@@ -5,4 +5,4 @@ with open("shanmukharesume.html", "r", encoding="utf-8") as f:
     html_content = f.read()
 
 st.title("")
-html(html_content, height=3000)
+html(html_content, height=2000)
