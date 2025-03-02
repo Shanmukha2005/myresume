@@ -5,78 +5,65 @@ with open("shanmukharesume.html", "r", encoding="utf-8") as f:
     html_content = f.read()
 
 
+
+
+
 import streamlit as st
 
-# Set fixed dimensions and disable mobile view
+# Configure page settings
+st.set_page_config(
+    page_title="Full Height App",
+    layout="wide",
+    initial_sidebar_state="auto"
+)
+
+# Custom CSS for full height
 st.markdown("""
     <style>
-    /* Force desktop layout */
+    /* Full viewport height */
     .main > div {
-        min-width: 1024px !important;
-        max-width: 1366px !important;  /* Typical laptop screen width */
-        margin: 0 auto;
-        padding: 2rem;
+        min-height: 100vh;
+        padding: 1rem 2rem !important;
     }
 
-    /* Hide mobile overflow */
-    .reportview-container .main {
-        overflow: hidden;
+    /* Remove default Streamlit spacing */
+    .stApp {
+        margin: 0 !important;
+        padding: 0 !important;
+        max-width: none !important;
     }
 
-    /* Mobile device warning */
-    @media (max-width: 1023px) {
-        .desktop-content {
-            display: none !important;
-        }
-        .mobile-warning {
-            display: block !important;
-            padding: 2rem;
-            text-align: center;
-            color: red;
-            font-size: 24px;
-        }
+    /* Full-height containers */
+    .full-height {
+        height: calc(100vh - 100px) !important;  /* Adjust for header/footer */
+        overflow-y: auto;
     }
-
-    @media (min-width: 1024px) {
-        .mobile-warning {
-            display: none !important;
-        }
+    
+    /* Fix iframe height */
+    .st-emotion-cache-1v0mbdj {
+        height: 100vh !important;
     }
     </style>
     """, unsafe_allow_html=True)
 
-# Add mobile warning message
-st.markdown("""
-    <div class="mobile-warning">
-        ⚠️ This application is only available on laptop/desktop devices!
-    </div>
-    """, unsafe_allow_html=True)
+# Create full-height container
+with st.container(height=700):  # Initial height (overridden by CSS)
+    # Your content
+    st.title("Full Height Website")
+    
+    # Example full-height component
+    with st.container(height=500):  # Sub-container with scroll
+        st.write("Scrollable Content Area")
+        st.line_chart(pd.DataFrame(np.random.randn(20, 3)))
 
-# Main content (only visible on laptops/desktops)
-st.markdown('<div class="desktop-content">', unsafe_allow_html=True)
+    # Footer
+    st.markdown("---")
+    st.caption("Footer Content")
 
-# Your laptop-only content
-st.set_page_config(layout="wide")
-st.title("Laptop-Only Application")
-st.header("This app is optimized for laptop/desktop viewing")
 
-with st.container():
-    col1, col2 = st.columns(2)
-    with col1:
-        st.subheader("Control Panel")
-        slider_value = st.slider("Select value", 0, 100, 50)
-        
-    with col2:
-        st.subheader("Visualization")
-        chart_data = pd.DataFrame(np.random.randn(20, 3), columns=['A', 'B', 'C'])
-        st.line_chart(chart_data, height=400)
 
-st.markdown('</div>', unsafe_allow_html=True)
 
-# Block mobile zooming
-st.markdown("""
-    <meta name="viewport" content="width=1024, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimum-scale=1.0">
-    """, unsafe_allow_html=True)
+
 
 
 # Render the HTML/JS website
