@@ -46,18 +46,6 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 
-# Create full-height container
-with st.container(height=700):  # Initial height (overridden by CSS)
-    # Your content
-    st.title("Full Height Website")
-    
-    # Example full-height component
-    with st.container(height=500):  # Sub-container with scroll
-
-    # Footer
-    st.markdown("---")
-    st.caption("Footer Content")
-
 
 
 
