@@ -53,8 +53,6 @@ with st.container(height=700):  # Initial height (overridden by CSS)
     
     # Example full-height component
     with st.container(height=500):  # Sub-container with scroll
-        st.write("Scrollable Content Area")
-        st.line_chart(pd.DataFrame(np.random.randn(20, 3)))
 
     # Footer
     st.markdown("---")
